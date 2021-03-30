@@ -1,0 +1,21 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.springframewor.org/tags/form">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+<form action="/" method="post" >
+    <form:hidden path="id"/>
+    name: <input type = "text" name="name"/>
+    <br>
+    password: <input type = "text" name="password"/>
+    <br>
+    <input type="submit" value="Create">
+    <br>
+    <a th:href="@{/logout}">Logout</a>
+</form>
+ </body>
+</html>
