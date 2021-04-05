@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.javamentor.springbootcrud.dao.RoleDao;
 import ru.javamentor.springbootcrud.dao.UserDao;
+import ru.javamentor.springbootcrud.model.Role;
 import ru.javamentor.springbootcrud.model.User;
 
 
