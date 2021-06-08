@@ -19,6 +19,7 @@ public class UserDaoImpl implements UserDao {
 
     }
 
+
     @Override
     public void deleteUser(int id) {
         entityManager.createQuery("delete from User u where u.id = :id")
@@ -47,6 +48,11 @@ public class UserDaoImpl implements UserDao {
         updatedUser.setName(user1.getName());
         updatedUser.setPassword(user1.getPassword());
     }
+    @Override
+    public void updateUser(User user1) {
+        entityManager.merge(user1);
+
+    }
 
     @Override
     public User getUserByUsername(String username) {
@@ -54,4 +60,11 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("username", username).getSingleResult();
         return user;
     }
+    @Override
+    public User getByEmail(String email) {
+        User user = (User) entityManager.createQuery("select u from User u where u.email = :email")
+                .setParameter("email", email).getSingleResult();
+        return user;
+    }
+
 }

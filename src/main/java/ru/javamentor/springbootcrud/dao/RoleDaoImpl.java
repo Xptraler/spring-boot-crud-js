@@ -6,6 +6,7 @@ import ru.javamentor.springbootcrud.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class RoleDaoImpl implements RoleDao{
@@ -14,8 +15,7 @@ public class RoleDaoImpl implements RoleDao{
 
     @Override
     public Role getOneRole(int id) {
-        Role role = (Role) entityManager.createQuery("select u from Role u where u.id = :id")
+        return (Role) entityManager.createQuery("select u from Role u where u.id = :id")
                 .setParameter("id",(long)id).getSingleResult();
-        return role;
     }
 }

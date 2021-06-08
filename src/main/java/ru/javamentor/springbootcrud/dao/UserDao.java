@@ -13,4 +13,6 @@ public interface UserDao {
     User getUser(int id);
     void update(int id, User user);
     User getUserByUsername(String username);
+    User getByEmail(String email);
+    void updateUser( User user);
 }
