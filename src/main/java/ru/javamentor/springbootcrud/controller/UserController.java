@@ -28,12 +28,11 @@ public class UserController {
     public String login() {
         return "login";
     }
-
-    @GetMapping(value = "/users")
-    public List<User> userByID(@PathVariable("id") int id, Model model) {
-        return userService.getUsers();
-
+    @GetMapping(value = "/login")
+    public String login1() {
+        return "login";
     }
+
 
     @GetMapping(value = "/admin")
     public String getUsersAdmin(ModelMap model, SecurityContextHolderAwareRequestWrapper requestWrapper) {
@@ -52,23 +51,6 @@ public class UserController {
         return "/admin/adminPanel";
     }
 
-    @GetMapping("/admin/new")
-    public String creationForm(ModelMap model) {
-        model.addAttribute("user", new User());
-        return "/admin/adminPanel";
-
-    }
-
-    @PostMapping()
-    public String createUser(@RequestParam String name,
-                             @RequestParam String lastName, @RequestParam String age,
-                             @RequestParam String email, @RequestParam String password,
-                             @RequestParam Set<Role> roles) {
-        User user = (User) new User(name, lastName, age, email, password, roles);
-        userService.createUser(user);
-        return "redirect:/admin";
-
-    }
 
     @GetMapping("/user/{id}")
     public String show(@PathVariable("id") int id, Model model,
@@ -90,24 +72,6 @@ public class UserController {
         model.addAttribute("roles", formattedString);
 
         return "/user/showBoot";
-    }
-
-    @GetMapping("/admin/{id}/edit")
-    public String updateUser(@PathVariable("id") int id, Model model) {
-        model.addAttribute("users", userService.getUser(id));
-        return "/admin/edit";
-    }
-
-    @RequestMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.update(id, user);
-        return "redirect:/admin";
-    }
-
-    @RequestMapping("/admin/{id}")
-    public String delete(@PathVariable("id") int id) {
-        userService.deleteUser(id);
-        return "redirect:/admin";
     }
 
 }

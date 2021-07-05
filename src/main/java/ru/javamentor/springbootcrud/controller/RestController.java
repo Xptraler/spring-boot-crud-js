@@ -25,24 +25,19 @@ public class RestController {
         this.roleDao = roleDao;
     }
 
-    @GetMapping
+    @GetMapping("/users")
     public List<User> getAll() {
         return userService.getUsers();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/users/{id}")
     public User getById(@PathVariable Long id) {
         return userService.getUser(Math.toIntExact(id));
     }
 
-    @CachePut
-    @PutMapping("/update/{role}")
-    public void update(@RequestBody User user, @PathVariable String role) {
+    @PutMapping("/users/{role}")
+    public void update(@RequestBody User user, @PathVariable(required = false) String role) {
         Set<Role> roles = new HashSet<>();
-        System.out.println(role);
-        System.out.println("before");
-        System.out.println(user);
-        System.out.println(roleDao.getOneRole(1));
         if (role.equals("ADMIN")) {
             roles.add(roleDao.getOneRole(2));
             user.setRoles(roles);
@@ -52,6 +47,16 @@ public class RestController {
             user.setRoles(roles);
         }
         userService.updateUser(user);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public void delete(@PathVariable int id) {
+        userService.deleteUser(id);
+    }
+
+    @PostMapping("/users")
+    public void createUser(@RequestBody User user) {
+        userService.createUser(user);
     }
 
 }

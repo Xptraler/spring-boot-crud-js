@@ -4,16 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <title>User page</title>
     <link rel="shortcut icon" href="https://be1.ru/uploads/favicons/QGr0nOvfBgwIINEC/favicon-32x32.png"
           type="image/png">
+    <script type="text/javascript" src="/js/showUser.js"></script>
 </head>
 <body>
 <nav class="navbar fixed-top navbar-dark bg-dark">
     <div class="container-fluid">
-        <span class="navbar-brand"><b>&nbsp;<span th:text="${users.getEmail()}">VALUE</span> </b><small>with role: USER</small></span>
+        <span class="navbar-brand"><b>&nbsp;<span th:text="${#authentication.getPrincipal().getEmail()}">value</span> </b><small>with role: USER</small></span>
         <a class="nav-link text-muted" href="/logout">Logout</a>
     </div>
 </nav>
@@ -55,12 +57,12 @@
                             </thead>
                             <tbody>
                             <tr class="border border-light">
-                                <td><p th:text="${users.getId()}">VALUE</p></td>
-                                <td><p th:text="${users.getName()}">VALUE</p></td>
-                                <td><p th:text="${users.getLastName()}">VALUE</p></td>
-                                <td><p th:text="${users.getAge()}">VALUE</p></td>
-                                <td><p th:text="${users.getEmail}">VALUE</p></td>
-                                <td><p th:text="${roles}">VALUE</p></td>
+                                <td><span th:text="${#authentication.getPrincipal().getId()}">value</span></td>
+                                <td><span th:text="${#authentication.getPrincipal().getName()}">value</span></td>
+                                <td><span th:text="${#authentication.getPrincipal().getLastName()}">value</span></td>
+                                <td><span th:text="${#authentication.getPrincipal().getAge()}">value</span></td>
+                                <td><span th:text="${#authentication.getPrincipal().getEmail()}">value</span></td>
+                                <td><span th:text="${roles}">value</span></td>
                             </tr>
                             </tbody>
                         </table>
